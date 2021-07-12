@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Product } from '../model/product';
 import { ProductService } from '../services/product.service';
@@ -17,7 +18,7 @@ export class ProductComponent implements OnInit {
   data: Product;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   ngOnInit() {}
@@ -28,6 +29,10 @@ export class ProductComponent implements OnInit {
 
   isTheLast() {
     return this.productService.isTheLast(this.data);
+  }
+
+  isAvailable() {
+    return this.productService.isAvailable(this.data)
   }
 
 }

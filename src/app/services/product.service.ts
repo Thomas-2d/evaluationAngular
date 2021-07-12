@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,8 @@ export class ProductService {
     return this.http.get<Product[]>('http://localhost:8080/rest/products');
   }
 
-  getProductsId(id: string): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/rest/products/' + id);
+  getProductsId(id: string): Observable<Product> {
+    return this.http.get<Product>('http://localhost:8080/rest/products/' + id);
   }
 
   isTheLast(product: Product): boolean {

@@ -1,11 +1,12 @@
 <div class="col-md-3 col-sm-6 product-item">
-  <div class="thumbnail" [ngClass]="{last: isTheLast()}">
+  <div class="thumbnail" [ngClass]="{last: isTheLast(), available: !isAvailable()}">
     <img [src]="data.photo" alt="">
     <div class="caption">
       <h3>{{data.title | uppercase }} - {{data.price | currency:'EUR'}}</h3>
       <p>{{data.description}}</p>
       <p>
-        <button class="btn btn-primary" (click)="addToBasketClick()">Add to Cart</button>
+        <button class="btn btn-primary" routerLink="/product/{{data.id}}">Détail du produit</button>
+        <button class="btn btn-primary" (click)="addToBasketClick()" [disabled]="!isAvailable()">Add to Cart</button>
       </p>
     </div>
   </div>
