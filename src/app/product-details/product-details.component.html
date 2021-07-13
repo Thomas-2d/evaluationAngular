@@ -12,10 +12,11 @@
       </td>
     </tr>
     </table>
-    <p>Voir nos autres produits : </p>
+    <p>Autres produits</p>
     <div class="row text-center">
       <ng-container *ngFor="let product of products">
-        <app-product *ngIf="isAvailable(product) && product?.title !== productDetail?.title" [data]="product"
-                     (addToBasket)="addToBasket($event)"></app-product>
+        <app-product *ngIf="product?.title !== productDetail?.title" [data]="product"
+                     (addToBasket)="addToBasket($event)"
+                     [ngClass]="{priceInferior: priceIsInferior(product, productDetail)}"></app-product>
       </ng-container>
     </div>

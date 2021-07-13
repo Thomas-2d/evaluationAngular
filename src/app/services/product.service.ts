@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class ProductService {
 
   decreaseStock(product: Product) {
     product.stock -= 1;
+  }
+
+  priceIsInferior(product: Product, productDetail: Product): boolean {
+    return product.price < productDetail.price;
   }
 
 }

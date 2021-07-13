@@ -48,5 +48,8 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.decreaseStock(event);
   }
 
+  priceIsInferior(product: Product, productDetail: Product): boolean {
+    return this.productService.priceIsInferior(product, productDetail);
+  }
 }
 
