@@ -1,1 +1,21 @@
-<pre>{{productDetail | json}}</pre>
+<table>
+    <tr>
+      <td>
+        <img [src]="productDetail?.photo" alt="Produit">
+      </td>
+      <td>
+        <h2>{{productDetail?.title}} - {{productDetail?.price | currency:'EUR'}}</h2>
+        <p>{{productDetail?.description}}</p>
+        <p>Stock : {{productDetail?.stock}}
+        <span *ngIf="productDetail && isTheLast(productDetail)" [ngClass]="{last: isTheLast(productDetail)}"> DERNIER DISPONIBLE</span></p>
+        <button class="btn btn-primary" (click)="addToBasket(productDetail)">Add to Cart</button>
+      </td>
+    </tr>
+    </table>
+    <p>Voir nos autres produits : </p>
+    <div class="row text-center">
+      <ng-container *ngFor="let product of products">
+        <app-product *ngIf="isAvailable(product) && product?.title !== productDetail?.title" [data]="product"
+                     (addToBasket)="addToBasket($event)"></app-product>
+      </ng-container>
+    </div>
