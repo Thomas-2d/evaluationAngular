@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   priceIsInferior(product: Product, productDetail: Product): boolean {
-    return this.productService.priceIsInferior(product, productDetail);
+    return this.productService.priceIsInferior(product, this.productDetail);
   }
 }
 

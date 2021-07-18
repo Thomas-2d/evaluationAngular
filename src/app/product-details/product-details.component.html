@@ -8,15 +8,17 @@
         <p>{{productDetail?.description}}</p>
         <p>Stock : {{productDetail?.stock}}
         <span *ngIf="productDetail && isTheLast(productDetail)" [ngClass]="{last: isTheLast(productDetail)}"> DERNIER DISPONIBLE</span></p>
-        <button class="btn btn-primary" (click)="addToBasket(productDetail)">Add to Cart</button>
+        <button class="btn btn-primary" (click)="addToBasket(productDetail)" [disabled]="!isAvailable(productDetail)">Add to Cart</button>
       </td>
     </tr>
     </table>
     <p>Autres produits</p>
     <div class="row text-center">
       <ng-container *ngFor="let product of products">
+        <div [ngClass]="{priceInferior: priceIsInferior(product, productDetail)}">
         <app-product *ngIf="product?.title !== productDetail?.title" [data]="product"
                      (addToBasket)="addToBasket($event)"
-                     [ngClass]="{priceInferior: priceIsInferior(product, productDetail)}"></app-product>
+                     ></app-product>
+        </div>
       </ng-container>
     </div>
